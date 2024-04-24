@@ -5,7 +5,7 @@ local Window = Fluent:CreateWindow({
     Title = "Xemo Hub[Tech]",
     SubTitle = "by HHoang",
     TabWidth = 160,
-    Size = UDim2.fromOffset(450, 300),
+    Size = UDim2.fromOffset(530, 350),
     Acrylic = true,
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.End
@@ -14,14 +14,15 @@ local Tabs = {
 	About = Window:AddTab({ Title = "Profile", Icon = "trash" }),
 	Status = Window:AddTab({ Title = "Status", Icon = "code-2" }),
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Stats = Window:AddTab({ Title = "Stats", Icon = "" }),
-    Player = Window:AddTab({ Title = "Player", Icon = "" }),
-    Teleport = Window:AddTab({ Title = "Island", Icon = "" }),
-    Fruit = Window:AddTab({ Title = "Fruit", Icon = "" }),
-    Raid = Window:AddTab({ Title = "Raid", Icon = "" }),
-    Race = Window:AddTab({ Title = "Race V4", Icon = "" }),
-    Shop = Window:AddTab({ Title = "Shop", Icon = "" }),
-	Misc = Window:AddTab({ Title = "Misc", Icon = "" }),
+    Stats = Window:AddTab({ Title = "Stats", Icon = "apple" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "coffee" }),
+    Teleport = Window:AddTab({ Title = "Island", Icon = "cloud-rain-wind" }),
+    Sea = Window:AddTab({ Title = "Sea Event", Icon = "waves" }),   
+    Fruit = Window:AddTab({ Title = "Fruit", Icon = "crown" }),
+    Raid = Window:AddTab({ Title = "Raid", Icon = "cookie" }),
+    Race = Window:AddTab({ Title = "Race V4", Icon = "bone" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "swords" }),
+	Misc = Window:AddTab({ Title = "Misc", Icon = "sun" }),
     Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
 }
 local Options = Fluent.Options
@@ -39,8 +40,8 @@ Tabs.About:AddParagraph({
     })
 
   Tabs.About:AddParagraph({
-        Title = "🌍Thank for use🌍",
-        Content = "Script[Blox Fruit]"
+        Title = "🌍 Apple Hub On Top🌍",
+        Content = "Anti Banana hub"
     })
     
     Tabs.About:AddParagraph({
@@ -2474,26 +2475,21 @@ function to(p)
 			end
 		end)
 	end
-local ScreenGui1 = Instance.new("ScreenGui")
-local ImageButton1 = Instance.new("ImageButton")
+local ScreenGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
-ScreenGui1.Name = "ImageButton"
-ScreenGui1.Parent = game.CoreGui
-ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-ImageButton1.Parent = ScreenGui1
-ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton1.BorderSizePixel = 0
-ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-ImageButton1.Size = UDim2.new(0, 50, 0, 50)
-ImageButton1.Draggable = true
-ImageButton1.Image = "rbxassetid://16375477666"
-ImageButton1.MouseButton1Down:connect(function()
-  game:GetService("VirtualInputManager"):SendKeyEvent(true,"LeftControl",false,game)
-  game:GetService("VirtualInputManager"):SendKeyEvent(false,"LeftControl",false,game)
-end)
-UICorner.Parent = ImageButton1
+ImageButton.Parent = ScreenGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton.Size = UDim2.new(0, 50, 0, 50)
+ImageButton.Draggable = true
+ImageButton.Image = "rbxassetid://16137232629"
+ImageButton.MouseButton1Down:connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
 end)
 
