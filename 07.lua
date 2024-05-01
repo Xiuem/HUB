@@ -2238,7 +2238,9 @@ do
     })
     
 Fluent:Notify({
-    Title = "Xemo Hub",
-    Content = "@"..game.Players.LocalPlayer.Name.." wait Script load..",
-    Duration = 8
-})
+        Title = "Xemo Hub",
+        Content = "@"..game.Players.LocalPlayer.Name.." wait Script load..",
+        SubContent = "", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
+    end
