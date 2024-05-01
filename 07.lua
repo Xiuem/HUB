@@ -2201,7 +2201,7 @@ end
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
 	Settings = Window:AddTab({ Title = "Setting", Icon = "settings" }),
-    Main = Window:AddTab({ Title = "Farm", Icon = "home" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Ms = Window:AddTab({ Title = "Misc", Icon = "apple" }),    
     Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     St = Window:AddTab({ Title = "Status", Icon = "bone" }),    
@@ -2347,7 +2347,7 @@ end)
         BypassTP = Value		
     end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bật Haki", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Auto Haki", Default = true })
 
     Toggle:OnChanged(function(Value)
         _G.AUTOHAKI = Value
@@ -2366,7 +2366,7 @@ end)
     end
 end)
 
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bật Haki Quan Sát", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Auto ken Haki", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.AUTOKen = Value
@@ -2389,13 +2389,13 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bật Haki Quan Sá
         end
     end)    
        
-   local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Đánh Nhanh + Tự Động Click", Default = true })
+   local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
     Toggle:OnChanged(function(Value)
       UFFF = Value
     end)
       
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Đánh Quái Gần", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Attack Aura", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.FastAttack2 = Value
@@ -2413,7 +2413,7 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bật Haki Quan Sá
     end
 end)
 
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Click 0s", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
 
     Toggle:OnChanged(function(Value)
       _G.FastAttack4 = Value
@@ -2432,7 +2432,7 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Click 0s", Default 
 end)
 
 local Dropdown = Tabs.Settings:AddDropdown("Dropdown", {
-        Title = "Mức Độ Gom Quái",
+        Title = "Select Bring",
         Values = {"Low", "Normal", "Super Bring"},
         Multi = false,
         Default = 1,
@@ -2461,7 +2461,7 @@ spawn(function()
     end
 end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Loại Bỏ Tất Cả Thông Báo", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Default = false })
 
     Toggle:OnChanged(function(Value)
         RemoveNotify = Value
@@ -2477,7 +2477,7 @@ end)
         end
     end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Loại Bỏ Tất Cả Chữ Khi Đánh Quái", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Text", Default = false })
 
     Toggle:OnChanged(function(Value)
         Removetext = Value
@@ -2493,7 +2493,7 @@ end)
         end
         end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Gom Quái", Default = true })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bring Mob", Default = true })
 
     Toggle:OnChanged(function(Mag)
         _G.BringMonster = Mag
@@ -2830,7 +2830,7 @@ task.spawn(function()
 	end
     end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Loại Bỏ Tất Cả Hiệu Ứng", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Effect ", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.Remove_Effect = Value		
@@ -2848,7 +2848,7 @@ task.spawn(function()
     end)
     end)
     
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Tự Động Bật Tộc V4", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Turn On v4", Default = false })
 
     Toggle:OnChanged(function(Value)
         AutoAwakeningRace = Value
@@ -2867,7 +2867,7 @@ task.spawn(function()
        end)
     
     local Slider = Tabs.Settings:AddSlider("Slider", {
-        Title = "Kill Quái Tại % Máu[Mastery]",
+        Title = "Kill Mob %[Mastery]",
         Description = "",
         Default = 70,
         Min = 0,
@@ -2877,14 +2877,14 @@ task.spawn(function()
             _G.Kill_At = Value
         end
     })
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill Z", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill Z", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SkillZ = Value
     end)
     local Slider = Tabs.Settings:AddSlider("Slider", {
-        Title = "Giữ Skill Z",
-        Description = "Change Time Use Skill",
+        Title = "",
+        Description = "",
         Default = 0,
         Min = 0,
         Max = 5,
@@ -2893,14 +2893,14 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill Z", Def
             _G.HoldZ = Value
         end
     })
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill X", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill X", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SkillX = Value
     end)
     local Slider = Tabs.Settings:AddSlider("Slider", {
-        Title = "Giữ Skill X",
-        Description = "Change Time Use Skill",
+        Title = "",
+        Description = "",
         Default = 0,
         Min = 0,
         Max = 5,
@@ -2909,14 +2909,14 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill X", Def
             _G.HoldX = Value
         end
     })
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill C", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill C", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SkillC = Value
     end)
 local Slider = Tabs.Settings:AddSlider("Slider", {
-        Title = "Giữ Skill C",
-        Description = "Change Time Use Skill",
+        Title = "",
+        Description = "",
         Default = 0,
         Min = 0,
         Max = 5,
@@ -2925,15 +2925,15 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
             _G.HoldC = Value
         end
     })
-local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Dùng Skill V", Default = false })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill V", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SkillV = Value
     end)
 
 local Slider = Tabs.Settings:AddSlider("Slider", {
-        Title = "Giữ Skill V",
-        Description = "Change Time Use Skill",
+        Title = "",
+        Description = "",
         Default = 0,
         Min = 0,
         Max = 5,
@@ -2942,3 +2942,78 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
             _G.HoldV = Value
         end
     })
+    
+        Tabs.Main:AddParagraph({
+        Title = "Farming",
+        Content = ""
+    })
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm level", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarm = Value
+		StopTween(_G.AutoFarm)		
+    end)
+
+    spawn(function()
+        while wait() do
+            if _G.AutoFarm then
+                spawn(function()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    if not string.find(QuestTitle, NameMon) then
+                        StartMagnet = false
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                    end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        StartMagnet = false
+                        CheckQuest()
+                        if BypassTP then
+                            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
+						        BTP(CFrameQuest)
+                            elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 1500 then
+                                TP1(CFrameQuest)
+                            else
+						        TP1(CFrameQuest)
+					        end
+                        end
+					if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                    end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        CheckQuest()
+                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                    if v.Name == Mon then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            repeat task.wait()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                AutoHaki()                                            
+                                                PosMon = v.HumanoidRootPart.CFrame
+                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                v.HumanoidRootPart.Size = Vector3.new(70,70,70)
+                                                StartMagnet = true
+                                            until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                        else
+                                            StartMagnet = false
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            TP1(CFrameMon)
+                            StartMagnet = false
+                            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
+                             TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(15,10,2))
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+    
