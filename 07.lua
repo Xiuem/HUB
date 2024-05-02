@@ -2943,6 +2943,86 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
         end
     })
     
+        Tabs.Maim:AddParagraph({
+        Title = "Cuttay",
+        Content = ""
+    })    
+    
+    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Select Stats",
+        Values = {"Melee",
+                                          "Defense",
+                                          "Sword",
+                                          "Fruit",
+                                          "Gun"},
+        Multi = false,
+        Default = 0,
+    })
+
+    Dropdown:SetValue("")
+    Dropdown:OnChanged(function(Value)
+        _G.Stats = Value
+    end)
+    
+    PointStats = 3
+      
+    spawn(function()
+		while wait() do
+			if game.Players.localPlayer.Data.Points.Value >= PointStats then
+				if _G.Stats == "Melee" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Melee",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Defense" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Defense",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Sword" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Sword",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Gun" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Gun",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Fruit" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Demon Fruit",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+			end
+		end
+	end)
+    
+    PosY = 30
+    
+Tabs.Main:AddButton({
+        Title = "Reset Character",
+        Description = "",
+        Callback = function()            
+game.Players.LocalPlayer.Character.Head:Destroy()
+        end
+    })
+    
         Tabs.Main:AddParagraph({
         Title = "Farming",
         Content = ""
