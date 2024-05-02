@@ -2943,11 +2943,8 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
         end
     })
     
-        Tabs.Main:AddParagraph({
-        Title = "Cuttay",
-        Content = ""
-    })    
-    
+   Tabs.Main:AddSection("Auto Cuttay")
+   
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Select Stats",
         Values = {"Melee",
@@ -2971,7 +2968,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
 			if game.Players.localPlayer.Data.Points.Value >= PointStats then
 				if _G.Stats == "Melee" then
 					local args = {
-						[1] = "AddPoint", 
+						[1] = "AddPoint",
 						[2] = "Melee",
 						[3] = PointStats
 					}
@@ -3023,10 +3020,7 @@ game.Players.LocalPlayer.Character.Head:Destroy()
         end
     })
     
-        Tabs.Main:AddParagraph({
-        Title = "Farming",
-        Content = ""
-    })
+        Tabs.Main:AddSection("Auto Framing")
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm level", Default = false })
 
