@@ -2943,7 +2943,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
         end
     })
     
-        Tabs.Maim:AddParagraph({
+        Tabs.Main:AddParagraph({
         Title = "Cuttay",
         Content = ""
     })    
@@ -2971,7 +2971,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
 			if game.Players.localPlayer.Data.Points.Value >= PointStats then
 				if _G.Stats == "Melee" then
 					local args = {
-						[1] = "AddPoint",
+						[1] = "AddPoint", 
 						[2] = "Melee",
 						[3] = PointStats
 					}
