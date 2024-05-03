@@ -3856,7 +3856,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
         _G.SelectMaterial = Value
     end)
     
-    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Farm Nguyên Liệu", Default = false })
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Fram Material", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.AutoFarmMaterial = Value
