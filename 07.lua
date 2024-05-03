@@ -3631,7 +3631,7 @@ Tabs.Main:AddSection("Auto Fram Boss")
 		tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
 	end
 	
-	local Dropdown = Tabs.Mt:AddDropdown("Dropdown", {
+	local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Select Boss",
         Values = tableBoss,
         Multi = false,
@@ -3644,7 +3644,7 @@ Tabs.Main:AddSection("Auto Fram Boss")
         _G.SelectBoss = Value
     end)
     
-    local Toggle = Tabs.Mt:AddToggle("MyToggle", {Title = "Auto Farm Boss", Default = false })
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm Boss", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.AutoFarmBoss = Value
