@@ -2770,7 +2770,7 @@ task.spawn(function()
 	while task.wait() do
 			if MakoriGayMag and _G.BringMonster then
 				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-					if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+					if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
 						if InMyNetWork(v.HumanoidRootPart) then
 							v.HumanoidRootPart.CFrame = PosGay
 							v.Humanoid.JumpPower = 0
@@ -3763,79 +3763,6 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
         end
     end)
     
-            local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Pirate Raid[Beta]", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        _G.AutoRaidPirate = Value
-    StopTween(_G.AutoRaidPirate)
-    end)
-        
-        spawn(function()
-	while wait() do
-		if _G.AutoRaidPirate then
-			pcall(function()
-				local CFrameBoss = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
-				if (CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
-					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-						if _G.AutoRaidPirate and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-							if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 2000 then
-								repeat wait()
-									AutoHaki()
-									EquipWeapon(_G.SelectWeapon)
-									Fastattack = true
-									MakoriGayMag = true
-									v.HumanoidRootPart.CanCollide = false
-									v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-									topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-								until v.Humanoid.Health <= 0 or not v.Parent or _G.AutoRaidPirate == false
-								Fastattack = false
-								MakoriGayMag = false
-							end
-						end
-					end
-				else
-					if ((CFrameBoss).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1500 then
-						topos(CFrameBoss)
-					else
-						BTP(CFrameBoss)
-					end
-				end
-			end)
-		end
-	end
-    end)
-    
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Fram Chest[Tween]", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        AutoFarmChest = Value
-		StopTween(AutoFarmChest)
-    end)
-    
-    _G.MagnitudeAdd = 0
-spawn(function()
-	while wait() do 
-		if AutoFarmChest then
-			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
-				if v.Name:find("Chest") then
-					if game:GetService("Workspace"):FindFirstChild(v.Name) then
-						if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
-							repeat wait()
-								if game:GetService("Workspace"):FindFirstChild(v.Name) then
-									topos(v.CFrame)
-								end
-							until AutoFarmChest == false or not v.Parent
-							topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-							_G.MagnitudeAdd = _G.MagnitudeAdd+1500
-							break
-						end
-					end
-				end
-			end
-		end
-	end
-end)
-
         Tabs.Ms:AddParagraph({
         Title = "Auto Fram Boss",
         Content = ""
@@ -3977,266 +3904,6 @@ end)
             end
         end
     end)
-    
-    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Fram Observation", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        _G.AutoObservation = Value
-		StopTween(_G.AutoObservation)
-    end)
-    
-    spawn(function()
-        while wait() do
-            spawn(function()
-                if _G.AutoObservation then
-                    repeat task.wait()
-                        if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-                            game:GetService('VirtualUser'):CaptureController()
-                            game:GetService('VirtualUser'):SetKeyDown('0x65')
-                            wait(2)
-                            game:GetService('VirtualUser'):SetKeyUp('0x65')
-                        end
-                    until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") or not _G.AutoObservation
-                end
-            end)
-        end
-    end)
-    
-    spawn(function()
-        pcall(function()
-            while wait() do
-                if _G.AutoObservation then
-                    if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 3000 then
-                        game:GetService("StarterGui"):SetCore("SendNotification", {
-                            Icon = "rbxassetid://16375477666";
-                            Title = "Status Observation:", 
-                            Text = "You Have Max Points"
-                        })
-                        wait(2)
-                    else
-                        if World2 then
-                            if game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate") then
-                                if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(3,0,0)
-                                    until _G.AutoObservation == false or not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                else
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(0,50,0)+
-                                            wait(1)
-                                        if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") and _G.AutoObservation_Hop == true then
-                                            game:GetService("TeleportService"):Teleport(game.PlaceId,game:GetService("Players").LocalPlayer)
-                                        end
-                                    until _G.AutoObservation == false or game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                end
-                            else
-                                topos(CFrame.new(-5478.39209, 15.9775667, -5246.9126))
-                            end
-                        elseif World1 then
-                            if game:GetService("Workspace").Enemies:FindFirstChild("Galley Captain [Lv. 650]") then
-                                if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Galley Captain").HumanoidRootPart.CFrame * CFrame.new(3,0,0)
-                                    until _G.AutoObservation == false or not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                else
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Galley Captain").HumanoidRootPart.CFrame * CFrame.new(0,50,0)
-                                        wait(1)
-                                        if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") and _G.AutoObservation_Hop == true then
-                                            game:GetService("TeleportService"):Teleport(game.PlaceId,game:GetService("Players").LocalPlayer)
-                                        end
-                                    until _G.AutoObservation == false or game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                end
-                            else
-                                topos(CFrame.new(5533.29785, 88.1079102, 4852.3916))
-                            end
-                        elseif World3 then
-                            if game:GetService("Workspace").Enemies:FindFirstChild("Giant Islander") then
-                                if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Giant Islander").HumanoidRootPart.CFrame * CFrame.new(3,0,0)
-                                    until _G.AutoObservation == false or not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                else
-                                    repeat task.wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Giant Islander").HumanoidRootPart.CFrame * CFrame.new(0,50,0)
-                                        wait(1)
-                                        if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") and _G.AutoObservation_Hop == true then
-                                            game:GetService("TeleportService"):Teleport(game.PlaceId,game:GetService("Players").LocalPlayer)
-                                        end
-                                    until _G.AutoObservation == false or game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
-                                end
-                            else
-                                topos(CFrame.new(4530.3540039063, 656.75695800781, -131.60952758789))
-                            end
-                        end
-                    end
-                end
-            end
-        end)
-    end)
-    
-    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Observation V2", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        _G.AutoObservationHakiV2 = Value
-		StopTween(_G.AutoObservationHakiV2)
-    end)
-    
-    spawn(function()
-		while wait() do
-			if _G.AutoObservationHakiV2 then
-				if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-					repeat 
-						topos(CFrame.new(-12444.78515625, 332.40396118164, -7673.1806640625)) 
-						wait() 
-					until _G.StopTween == true or not _G.AutoObservationHakiV2 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-12444.78515625, 332.40396118164, -7673.1806640625)).Magnitude <= 10
-					wait(.5)
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen")
-					wait(1)
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","CitizenQuest",1)
-				else
-					if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,"Defeat 50 Forest Pirates") then
-						if game:GetService("Workspace").Enemies:FindFirstChild("Forest Pirate") then
-							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-								if v.Name == "Forest Pirate" then
-									repeat wait()
-										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
-											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-										end
-										EquipWeapon(_G.SelectWeapon)
-										topos(v.HumanoidRootPart.CFrame * CFrame.new(1,20,1))
-										PosHee =  v.HumanoidRootPart.CFrame
-										v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-										v.HumanoidRootPart.CanCollide = false
-										v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-										Mangnetcitzenmon = true
-									until _G.AutoObservationHakiV2 == false or v.Humanoid.Health <= 0
-									Mangnetcitzenmon = false
-								end
-							end
-						else
-							repeat 
-								topos(CFrame.new(-13277.568359375, 370.34185791016, -7821.1572265625)) 
-								wait() 
-							until _G.StopTween == true or not _G.AutoObservationHakiV2 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-13277.568359375, 370.34185791016, -7821.1572265625)).Magnitude <= 10
-						end
-					elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text ==  "Defeat  Captain Elephant (0/1)" then 
-						if game:GetService("Workspace").Enemies:FindFirstChild("Captain Elephant") then
-							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-								if v.Name == "Captain Elephant" then
-									repeat wait()
-										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
-											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-										end
-										EquipWeapon(_G.SelectWeapon)
-										topos(v.HumanoidRootPart.CFrame * CFrame.new(1,20,1))										
-										if sethiddenproperty then
-											sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-										end
-										v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-										v.HumanoidRootPart.CanCollide = false
-										v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-									until _G.AutoObservationHakiV2 == false or v.Humanoid.Health <= 0
-								end
-							end
-						else
-							repeat 
-								topos(CFrame.new(-13493.12890625, 318.89553833008, -8373.7919921875)) 
-								wait() 
-							until _G.StopTween == true or not _G.AutoObservationHakiV2 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-13493.12890625, 318.89553833008, -8373.7919921875)).Magnitude <= 10
-						end        
-					end
-				end
-				if game.Players.LocalPlayer.Backpack:FindFirstChild("Banana") and  game.Players.LocalPlayer.Backpack:FindFirstChild("Apple") and game.Players.LocalPlayer.Backpack:FindFirstChild("Pineapple") then
-					repeat 
-						topos(CFrame.new(-12444.78515625, 332.40396118164, -7673.1806640625)) 
-						wait() 
-					until _G.StopTween == true or not _G.AutoObservationHakiV2 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-12444.78515625, 332.40396118164, -7673.1806640625)).Magnitude <= 10
-					wait(.5)
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen")
-				elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Fruit Bowl") or game.Players.LocalPlayer.Character:FindFirstChild("Fruit Bowl") then
-					repeat 
-						topos(CFrame.new(-10920.125, 624.20275878906, -10266.995117188)) 
-						wait() 
-					until _G.StopTween == true or not _G.AutoObservationHakiV2 or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-10920.125, 624.20275878906, -10266.995117188)).Magnitude <= 10
-					wait(.5)
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Start")
-					wait(1)
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Buy")
-				else
-					for i,v in pairs(game.Workspace:GetDescendants()) do
-						if v.Name == "Apple" or v.Name == "Banana" or v.Name == "Pineapple" then
-							v.Handle.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1,10)
-							wait()
-							firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart,v.Handle,0)    
-							wait()
-						end
-					end   
-				end
-			end
-		end
-	end)
-
-	spawn(function()
-		while wait() do
-			pcall(function()
-				if _G.AutoObservationHakiV2 then
-					if sethiddenproperty then
-						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-					end
-				end
-			end)
-			game:GetService("RunService").Heartbeat:Wait()
-		end
-	end)
-
-	spawn(function()
-		game:GetService("RunService").Heartbeat:connect(function()
-			pcall(function()
-				if _G.AutoObservationHakiV2 then
-					if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
-						game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
-					end
-				end
-			end)
-		end)
-	end)
-
-	spawn(function()
-		pcall(function()
-			game:GetService("RunService").Heartbeat:Connect(function()
-				game:GetService("RunService").Heartbeat:Wait()
-				if _G.AutoObservationHakiV2 and StatrMagnet then
-					for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-						if v.Name == "Forest Pirate" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-							if v.Name == "Forest Pirate" then
-								v.HumanoidRootPart.CanCollide = false
-								v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
-								v.HumanoidRootPart.CFrame = PosHee
-							end
-						end
-					end
-				end
-			end)
-		end)
-	end)
-
-	spawn(function()
-		game:GetService("RunService").Heartbeat:connect(function()
-			game:GetService("RunService").Heartbeat:Wait()
-			pcall(function()
-				if _G.AutoObservationHakiV2 and StatrMagnet then
-					CheckQuest()
-					for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-						if v.Name == Ms then
-							v.Humanoid:ChangeState(11)
-						end
-					end
-				end
-			end)
-			game:GetService("RunService").Heartbeat:Wait()
-		end)
-	end)    
     
         Tabs.Ms:AddParagraph({
         Title = "Fruit",
@@ -4464,4 +4131,136 @@ end)
         end
     end)
     
+    Tabs.Ms:AddParagraph({
+        Title = "Auto Fram Material",
+        Content = ""
+    })
     
+    if World1 then
+        MaterialList = {
+          "Magma Ore","Angel Wings","Leather","Scrap Metal","Radioactive Material"
+        } elseif World2 then
+        MaterialList = {
+          "Mystic Droplet","Magma Ore","Leather","Scrap Metal","Demonic Wisp","Vampire Fang","Radioactive Material"
+        } elseif World3 then
+        MaterialList = {
+          "Leather","Scrap Metal","Vampire Fang","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk","Radioactive Material"
+        }
+        end
+    
+    local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Material Farm",
+        Values = MaterialList,
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectMaterial = Value
+    end)
+    
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Fram Material", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarmMaterial = Value
+		StopTween(_G.AutoFarmMaterial)
+    end)
+    
+    spawn(function()
+        while wait() do 
+            if _G.AutoFarmMaterial then
+                MaterialMon()
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == MMon then
+                               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                   repeat task.wait()
+                                        EquipWeapon(_G.Setting_table.Weapon)
+                                        Startmg = true
+                                        _G.PosMon = v.HumanoidRootPart.CFrame
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(0,30,1))
+                                        FastAttack = true
+                                    until not _G.AutoFarmMaterial or not v.Parent or v.Humanoid.Health <= 0
+                                    FastAttack = false
+                                    Startmg = false
+                                end
+                            end
+                        end
+                    else
+                    if ((MPos).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 4000 then
+						topos(MPos)
+						end
+                    end
+                end)
+            end
+        end
+    end)    
+
+spawn(function()
+	while task.wait() do
+		pcall(function()
+			if Startmg then
+				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+					if (v.HumanoidRootPart.Position-_G.PosMon.Position).Magnitude <= 300 then
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+						v.Humanoid:ChangeState(11)
+						v.Humanoid.JumpPower = 0
+						v.Humanoid.WalkSpeed = 0
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(5,5,5)
+						v.HumanoidRootPart.CFrame = _G.PosMon
+						sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoEctoplasm = Value
+		StopTween(_G.AutoEctoplasm)
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.AutoEctoplasm then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Ship Deckhand") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Engineer") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Steward") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Officer") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if string.find(v.Name, "Ship") then
+                                repeat task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    if string.find(v.Name,"Ship") then
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Head.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                       FarmPos = v.HumanoidRootPart.CFrame
+                                        MonFarm = v.Name
+                                    else
+                                        topos(CFrame.new(911.35827636719, 125.95812988281, 33159.5390625))
+                                    end
+                                until _G.AutoEctoplasm == false or not v.Parent or v.Humanoid.Health <= 0
+                            end
+                        end
+                    else
+                        local Distance = (Vector3.new(911.35827636719, 125.95812988281, 33159.5390625) - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                        if Distance > 18000 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+                        end
+                        topos(CFrame.new(911.35827636719, 125.95812988281, 33159.5390625))
+                    end
+                end
+            end
+        end)
+    end)
