@@ -4023,7 +4023,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
 		end)
 	end)
 	
-	local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Pirate Raid[Beta]", Default = false })
+	local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Pirate Raid[Beta]", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.AutoRaidPirate = Value
@@ -4127,6 +4127,135 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
             end
         end
     end)
+    
+    if World1 then
+        MaterialList = {
+          "Magma Ore","Angel Wings","Leather","Scrap Metal","Radioactive Material"
+        } elseif World2 then
+        MaterialList = {
+          "Mystic Droplet","Magma Ore","Leather","Scrap Metal","Demonic Wisp","Vampire Fang","Radioactive Material"
+        } elseif World3 then
+        MaterialList = {
+          "Leather","Scrap Metal","Vampire Fang","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk","Radioactive Material"
+        }
+        end
+    
+    local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Material ",
+        Values = MaterialList,
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectMaterial = Value
+    end)
+    
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Fram Material", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarmMaterial = Value
+		StopTween(_G.AutoFarmMaterial)
+    end)
+    
+    spawn(function()
+        while wait() do 
+            if _G.AutoFarmMaterial then
+                MaterialMon()
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == MMon then
+                               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                   repeat task.wait()
+                                        EquipWeapon(_G.Setting_table.Weapon)
+                                        Startmg = true
+                                        _G.PosMon = v.HumanoidRootPart.CFrame
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(0,30,1))
+                                        FastAttack = true
+                                    until not _G.AutoFarmMaterial or not v.Parent or v.Humanoid.Health <= 0
+                                    FastAttack = false
+                                    Startmg = false
+                                end
+                            end
+                        end
+                    else
+                    if ((MPos).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 4000 then
+						topos(MPos)
+						end
+                    end
+                end)
+            end
+        end
+    end)    
+
+spawn(function()
+	while task.wait() do
+		pcall(function()
+			if Startmg then
+				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+					if (v.HumanoidRootPart.Position-_G.PosMon.Position).Magnitude <= 300 then
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+						v.Humanoid:ChangeState(11)
+						v.Humanoid.JumpPower = 0
+						v.Humanoid.WalkSpeed = 0
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(5,5,5)
+						v.HumanoidRootPart.CFrame = _G.PosMon
+						sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoEctoplasm = Value
+		StopTween(_G.AutoEctoplasm)
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.AutoEctoplasm then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Ship Deckhand") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Engineer") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Steward") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Officer") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if string.find(v.Name, "Ship") then
+                                repeat task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    if string.find(v.Name,"Ship") then
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Head.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                       FarmPos = v.HumanoidRootPart.CFrame
+                                        MonFarm = v.Name
+                                    else
+                                        topos(CFrame.new(911.35827636719, 125.95812988281, 33159.5390625))
+                                    end
+                                until _G.AutoEctoplasm == false or not v.Parent or v.Humanoid.Health <= 0
+                            end
+                        end
+                    else
+                        local Distance = (Vector3.new(911.35827636719, 125.95812988281, 33159.5390625) - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                        if Distance > 18000 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+                        end
+                        topos(CFrame.new(911.35827636719, 125.95812988281, 33159.5390625))
+                    end
+                end
+            end
+        end)
+    end)    
     
     Tabs.Ms:AddParagraph({
         Title = "Misc",
@@ -4432,90 +4561,4 @@ end)
 			end
         end
     end)
-    
-        local Material = Tabs.Ms:AddSection("Auto Fram Material")
-
-    if First_Sea then
-        MaterialList = {
-          "Scrap Metal","Leather","Angel Wings","Magma Ore","Fish Tail"
-        } elseif Second_Sea then
-        MaterialList = {
-          "Scrap Metal","Leather","Radioactive Material","Mystic Droplet","Magma Ore","Vampire Fang"
-        } elseif Third_Sea then
-        MaterialList = {
-          "Scrap Metal","Leather","Demonic Wisp","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk"
-        }
-        end
-
-    local DropdownMaterial = Tabs.Ms:AddDropdown("DropdownMaterial", {
-        Title = "Select Material",
-        Description = "",
-        Values = MaterialList,
-        Multi = false,
-        Default = 1,
-    })
-
-    DropdownMaterial:SetValue("Leather")
-
-    DropdownMaterial:OnChanged(function(Value)
-        SelectMaterial = Value
-    end)
-
-    local ToggleMaterial = Tabs.Ms:AddToggle("ToggleMaterial", {
-        Title = "Auto Fram Material",
-        Description = "", 
-        Default = false })
-
-    ToggleMaterial:OnChanged(function(Value)
-        _G.AutoMaterial = Value
-        if Value == false then
-            wait()
-            Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
-        end
-    end)
-    Options.ToggleMaterial:SetValue(false)
-    spawn(function()
-        while task.wait() do
-        if _G.AutoMaterial then
-        pcall(function()
-          MaterialMon(SelectMaterial)
-            toTarget(MPos)
-          if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
-          for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
-          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-          if v.Name == MMon then
-            repeat wait(_G.Fast_Delay)
-                AttackNoCoolDown()
-          AutoHaki()
-          bringmob = true
-          EquipTool(SelectWeapon)
-          Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-          v.HumanoidRootPart.Transparency = 1
-          v.Humanoid.JumpPower = 0
-          v.Humanoid.WalkSpeed = 0
-          v.HumanoidRootPart.CanCollide = false
-          FarmPos = v.HumanoidRootPart.CFrame
-          MonFarm = v.Name
-          --Click
-          until not _G.AutoMaterial or not v.Parent or v.Humanoid.Health <= 0
-          bringmob = false
-        end
-          end
-          end
-          else
-            for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
-          if string.find(v.Name, Mon) then
-          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
-          Tween(v.CFrame * CFrame.new(posX,posY,posZ))
-  
-          end
-          end
-          end
-          end
-          end)
-        end
-        end
-      end)
     
