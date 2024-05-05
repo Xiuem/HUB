@@ -2233,7 +2233,7 @@ do
     })
     
     Tabs.About:AddParagraph({
-        Title = "🍕Script So Mups🍕",
+        Title = "🍕There may be errors I will try to fix them🍕",
         Content = "How to solve the worry"
     })
     
@@ -4067,7 +4067,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
     
         Tabs.Ms:AddParagraph({
         Title = "Auto Fram Boss & Material",
-        Content = ""
+        Content = "Auto Fram Material[I will fix the error as soon as possible]"
     })
     
     if World1 then
@@ -4141,7 +4141,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
         end
     
     local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
-        Title = "Select Material[I will fix the error as soon as possible]",
+        Title = "Select Material",
         Values = MaterialList,
         Multi = false,
         Default = 1,
@@ -4588,8 +4588,8 @@ end)
     }
 
 Tabs.Sh:AddButton({
-        Title = "Nhập Tất Cả Các Code",
-        Description = "Nhập Tất Cả Các Code Ở Trong Game",
+        Title = "Redeem All Code",
+        Description = "",
         Callback = function()            
 function RedeemCode(value)
             game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
@@ -4601,7 +4601,7 @@ function RedeemCode(value)
     })
     
     Tabs.Sh:AddButton({
-        Title = "Dịch Chuyển Đến Sea 1",
+        Title = "Teleport First Sea",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
@@ -4609,7 +4609,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     })
     
     Tabs.Sh:AddButton({
-        Title = "Dịch Chuyển Đến Sea 2",
+        Title = "Teleport Second Sea",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
@@ -4617,17 +4617,17 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressros
     })
     
     Tabs.Sh:AddButton({
-        Title = "Dịch Chuyển Đến Sea 3",
+        Title = "Teleport Third Sea",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
         end
     })
     
-    Tabs.Sh:AddSection("Các Loại Võ")
+    Tabs.Sh:AddSection("Fighting Styles")
     
     Tabs.Sh:AddButton({
-        Title = "Mua Sanguine Art",
+        Title = "Buy Sanguine Art",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
@@ -4635,7 +4635,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua God Human",
+        Title = "Buy God Human",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
@@ -4643,7 +4643,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Superhuman",
+        Title = "Buy Superhuman",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
@@ -4651,7 +4651,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman"
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Death Step",
+        Title = "Buy Death Step",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
@@ -4659,7 +4659,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Sharkman Karate",
+        Title = "Buy Sharkman Karate",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
@@ -4668,7 +4668,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKar
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Dragon Talon",
+        Title = "BuyDragon Talon",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
@@ -4676,15 +4676,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Dragon Talon",
-        Description = "",
-        Callback = function()            
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
-        end
-    })
-    
-    Tabs.Sh:AddButton({
-        Title = "Mua Electric Claw",
+        Title = "Buy Electric Claw",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
@@ -4692,7 +4684,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricCla
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Dark Step",
+        Title = "Buy Dark Step",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
@@ -4700,7 +4692,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Electro",
+        Title = "Buy Electro",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
@@ -4708,7 +4700,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Fishman Karate",
+        Title = "Buy Fishman Karate",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
@@ -4716,7 +4708,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKara
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Dragon Claw",
+        Title = "Buy Dragon Claw",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
@@ -4727,7 +4719,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardRewa
     Tabs.Sh:AddSection("Abilities Shop")
     
     Tabs.Sh:AddButton({
-        Title = "Mua Sky Jumb [$ 10,000 Beli ]",
+        Title = "Buy Sky Jumb [$ 10,000 Beli ]",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Geppo")
@@ -4735,7 +4727,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Gepp
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Buso Haki [$ 25,000 Beli ]",
+        Title = "Buy Buso Haki [$ 25,000 Beli ]",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Buso")
@@ -4743,7 +4735,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Buso
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Observation haki [$ 750,000 Beli ]",
+        Title = "Buy Observation haki [$ 750,000 Beli ]",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk","Buy")
@@ -4751,7 +4743,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk","Buy"
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Soru  [$ 100,000 Beli ]",
+        Title = "Buy  Soru  [$ 100,000 Beli ]",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Soru")
@@ -4761,7 +4753,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Soru
     Tabs.Sh:AddSection("Misc")
     
     Tabs.Sh:AddButton({
-        Title = "Mua Tộc Quỷ",
+        Title = "Buy Ghoul Race",
         Description = "",
         Callback = function()            
 local args = {[1] = "Ectoplasm", [2] = "BuyCheck", [3] = 4}
@@ -4772,7 +4764,7 @@ local args = {[1] = "Ectoplasm", [2] = "BuyCheck", [3] = 4}
     })
     
     Tabs.Sh:AddButton({
-        Title = "Mua Tộc Người Máy",
+        Title = "Buy Cyborg Race",
         Description = "",
         Callback = function()            
 local args = {[1] = "CyborgTrainer", [2] = "Buy"}
@@ -4781,7 +4773,7 @@ local args = {[1] = "CyborgTrainer", [2] = "Buy"}
     })
     
     Tabs.Sh:AddButton({
-        Title = "Thay Tộc",
+        Title = "Reroll Race",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","1")
@@ -4790,7 +4782,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardRewa
     })
     
     Tabs.Sh:AddButton({
-        Title = "Reset Chỉ Số",
+        Title = "Refund Stats",
         Description = "",
         Callback = function()            
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","1")
