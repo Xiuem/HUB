@@ -3836,46 +3836,6 @@ spawn(function()
 	end
 end)
 
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm Chest[Bypass]", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        _G.ChestBypass = Value
-    end)
- 
- spawn(function()
-while wait() do
-if _G.ChestBypass then
-pcall(function()
-for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-      if string.find(v.Name, "Chest") then
-          print(v.Name)
-          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-          game.Players.LocalPlayer.Character.Head:Destroy()
-          wait(.15)
-      end
-  end
-  for _,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-   if string.find(v.Name, "Chest") and v:IsA("TouchTransmitter") then
-   firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
-   wait()
-   firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
-   end
-   end
-  end)
-    end
-  end
-end)
-
-spawn(function()
-while task.wait() do
-if _G.ChestBypass then
-        local ohString1 = "SetTeam"
-        local ohString2 = "Pirates"
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(ohString1, ohString2)
-     end
-end
-end)
-    
         Tabs.Ms:AddParagraph({
         Title = "Auto Fram Boss",
         Content = ""
