@@ -3793,7 +3793,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
                 if _G.AutoObservation then
                     if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 3000 then
                         game:GetService("StarterGui"):SetCore("SendNotification", {
-                            Icon = "rbxassetid://16375477666";
+                            Icon = "rbxassetid://17401531638";
                             Title = "Status Observation:", 
                             Text = "You Have Max Points"
                         })
@@ -4161,59 +4161,34 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Elite", Default = 
     end)
     
     spawn(function()
-        while wait() do 
+        while wait() do
             if _G.AutoFarmMaterial then
-                MaterialMon()
                 pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.AutoFarmMaterial) then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == MMon then
-                               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                   repeat task.wait()
-                                        EquipWeapon(_G.Setting_table.Weapon)
-                                        Startmg = true
-                                        _G.PosMon = v.HumanoidRootPart.CFrame
-                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(0,30,1))
-                                        FastAttack = true
+                            if v.Name == _G.AutoFarmMaterial then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                     until not _G.AutoFarmMaterial or not v.Parent or v.Humanoid.Health <= 0
-                                    FastAttack = false
-                                    Startmg = false
                                 end
                             end
                         end
                     else
-                    if ((MPos).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 4000 then
-						topos(MPos)
-						end
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(_G.AutoFarmMaterial) then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.AutoFarmMaterial).HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                        end
                     end
                 end)
             end
         end
-    end)    
-
-spawn(function()
-	while task.wait() do
-		pcall(function()
-			if Startmg then
-				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-					if (v.HumanoidRootPart.Position-_G.PosMon.Position).Magnitude <= 300 then
-						if v.Humanoid:FindFirstChild("Animator") then
-							v.Humanoid.Animator:Destroy()
-						end
-						v.Humanoid:ChangeState(11)
-						v.Humanoid.JumpPower = 0
-						v.Humanoid.WalkSpeed = 0
-						v.HumanoidRootPart.CanCollide = false
-						v.HumanoidRootPart.Size = Vector3.new(5,5,5)
-						v.HumanoidRootPart.CFrame = _G.PosMon
-						sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
-						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
-					end
-				end
-			end
-		end)
-	end
-end)
+    end)
 
 local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Default = false })
 
@@ -4292,43 +4267,6 @@ local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Def
                     else
                         if game:GetService("ReplicatedStorage"):FindFirstChild("Darkbeard") then
                             topos(game:GetService("ReplicatedStorage"):FindFirstChild("Darkbeard").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-    
-    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Soul Reaper", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        _G.AutoFarmBossHallow = Value
-		StopTween(_G.AutoFarmBossHallow)
-    end)
-    
-    spawn(function()
-        while wait() do
-            if _G.AutoFarmBossHallow then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Soul Reaper" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
-                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                                    until not _G.AutoFarmBossHallow or not v.Parent or v.Humanoid.Health <= 0
-                                end
-                            end
-                        end
-                    else
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper") then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Soul Reaper").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
                         end
                     end
                 end)
