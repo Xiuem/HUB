@@ -2202,13 +2202,13 @@ end
 local Tabs = {
 	Settings = Window:AddTab({ Title = "Setting", Icon = "settings" }),
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Ms = Window:AddTab({ Title = "Misc", Icon = "apple" }),    
     Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     St = Window:AddTab({ Title = "Status", Icon = "bone" }),    
+    Ms = Window:AddTab({ Title = "Misc", Icon = "apple" }),    
     Lc = Window:AddTab({ Title = "Local Player", Icon = "baby" }),   
-    RC = Window:AddTab({ Title = "Race V4", Icon = "cloud-moon-rain" }),   
     Se = Window:AddTab({ Title = "Sea Event", Icon = "waves" }),   
-    Ra = Window:AddTab({ Title = "Raid", Icon = "banana" }),    
+    RC = Window:AddTab({ Title = "Race V4", Icon = "cloud-moon-rain" }),  
+    Ra = Window:AddTab({ Title = "Raid", Icon = "banana" }),     
     Qs = Window:AddTab({ Title = "Quest & Item", Icon = "swords" }), 
     About = Window:AddTab({ Title = "Profile", Icon = "trash" }),
 }
@@ -3033,72 +3033,22 @@ Tabs.Main:AddParagraph({
         Content = "Main Fram"
     })
 
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Fram Level", Default = false })
+local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Select Method Fram",
+        Values = {"Level", "Bone", "Katakuri"},
+        Multi = false,
+        Default = 1,
+    })
 
-    Toggle:OnChanged(function(Value)
-        _G.AutoFarm = Value
-		StopTween(_G.AutoFarm)		
-    end)
+    Dropdown:SetValue("")
 
-    spawn(function()
-        while wait() do
-            if _G.AutoFarm then
-                spawn(function()
-                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                    if not string.find(QuestTitle, NameMon) then
-                        StartMagnet = false
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                    end
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        StartMagnet = false
-                        CheckQuest()
-                        if BypassTP then
-                            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
-						        BTP(CFrameQuest)
-                            elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 1500 then
-                                TP1(CFrameQuest)
-                            else
-						        TP1(CFrameQuest)
-					        end
-                        end
-					if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
-						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
-                    end
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                        CheckQuest()
-                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                    if v.Name == Mon then
-                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                            repeat task.wait()
-                                                EquipWeapon(_G.SelectWeapon)
-                                                AutoHaki()                                            
-                                                PosMon = v.HumanoidRootPart.CFrame
-                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-                                                v.HumanoidRootPart.CanCollide = false
-                                                v.Humanoid.WalkSpeed = 0
-                                                v.Head.CanCollide = false
-                                                v.HumanoidRootPart.Size = Vector3.new(70,70,70)
-                                                StartMagnet = true
-                                            until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                        else
-                                            StartMagnet = false
-                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                        end
-                                    end
-                                end
-                            end
-                        else
-                            TP1(CFrameMon)
-                            StartMagnet = false
-                            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
-                             TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(15,10,2))
-                            end
-                        end
-                    end
-                end)
-            end
-        end
+    Dropdown:OnChanged(function(Value)
+        _G.Method = Value
     end)
     
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Start Fram", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFram = Value
+		StopTween(_G.AutoFarm)		
+    end)
