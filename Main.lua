@@ -2859,17 +2859,6 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Def
             end
         end
         end)
-    
-    local ToggleWhite = Tabs.Settings:AddToggle("MyToggle", {Title = "Màn hình Trắng (giảm lag)", Default = false })
-    
-    ToggleWhite:OnChanged(function(Value)
-       _G.WhiteScreen = Value
-       if _G.WhiteScreen == true then
-        game:GetService("RunService"):Set3dRenderingEnabled(false)
-    elseif _G.WhiteScreen == false then
-        game:GetService("RunService"):Set3dRenderingEnabled(true)
-            end
-        end)
      
      local Slider = Tabs.Settings:AddSlider("Slider", {
         Title = "Kill Mob %[Mastery]",
@@ -3016,6 +3005,17 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
 	end)
     
     PosY = 30
+    
+    local ToggleWhite = Tabs.Main:AddToggle("MyToggle", {Title = "White Screen", Default = false })
+    
+    ToggleWhite:OnChanged(function(Value)
+       _G.WhiteScreen = Value
+       if _G.WhiteScreen == true then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    elseif _G.WhiteScreen == false then
+        game:GetService("RunService"):Set3dRenderingEnabled(true)
+            end
+        end)
     
 Tabs.Main:AddButton({
         Title = "Reset Character",
