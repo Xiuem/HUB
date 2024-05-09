@@ -2870,4 +2870,4 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Def
         game:GetService("RunService"):Set3dRenderingEnabled(true)
             end
         end)
-        Options.ToggleWhite:SetValue(false)
+     
