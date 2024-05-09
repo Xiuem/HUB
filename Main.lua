@@ -2198,16 +2198,6 @@ end
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
-Library.ToggleKeybind = Options.MenuKeybind 
-        ThemeManager:SetLibrary(Library)
-        SaveManager:SetLibrary(Library)
-        SaveManager:IgnoreThemeSettings() 
-        SaveManager:SetIgnoreIndexes({ 'MenuKeybind' }) 
-        ThemeManager:SetFolder('MyScriptHub')
-        SaveManager:SetFolder('MyScriptHub/specific-game')
-        SaveManager:BuildConfigSection(Tabs['UI Settings']) 
-        ThemeManager:ApplyToTab(Tabs['UI Settings'])
-
 local Tabs = {
 	Settings = Window:AddTab({ Title = "Setting", Icon = "settings" }),
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
