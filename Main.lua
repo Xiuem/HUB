@@ -2860,7 +2860,7 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Def
         end
         end)
     
-    local ToggleWhite = Tabs.Setting:AddToggle("MyToggle", {Title = "Màn hình Trắng (giảm lag)", Default = false })
+    local ToggleWhite = Tabs.Settings:AddToggle("MyToggle", {Title = "Màn hình Trắng (giảm lag)", Default = false })
     
     ToggleWhite:OnChanged(function(Value)
        _G.WhiteScreen = Value
