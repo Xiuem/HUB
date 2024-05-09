@@ -2871,3 +2871,238 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Def
             end
         end)
      
+     local Slider = Tabs.Settings:AddSlider("Slider", {
+        Title = "Kill Mob %[Mastery]",
+        Description = "",
+        Default = 70,
+        Min = 0,
+        Max = 100,
+        Rounding = 5,
+        Callback = function(Value)
+            _G.Kill_At = Value
+        end
+    })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill Z", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        _G.SkillZ = Value
+    end)
+    local Slider = Tabs.Settings:AddSlider("Slider", {
+        Title = "Change Time Use Skill",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            _G.HoldZ = Value
+        end
+    })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill X", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        _G.SkillX = Value
+    end)
+    local Slider = Tabs.Settings:AddSlider("Slider", {
+        Title = "Change Time Use Skill",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            _G.HoldX = Value
+        end
+    })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill C", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        _G.SkillC = Value
+    end)
+local Slider = Tabs.Settings:AddSlider("Slider", {
+        Title = "Change Time Use Skill",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            _G.HoldC = Value
+        end
+    })
+local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Skill V", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        _G.SkillV = Value
+    end)
+
+local Slider = Tabs.Settings:AddSlider("Slider", {
+        Title = "Change Time Use Skill",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            _G.HoldV = Value
+        end
+    })
+    
+   Tabs.Main:AddSection("Auto Cuttay")
+   
+    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Select Stats",
+        Values = {"Melee",
+                                          "Defense",
+                                          "Sword",
+                                          "Fruit",
+                                          "Gun"},
+        Multi = false,
+        Default = 0,
+    })
+
+    Dropdown:SetValue("")
+    Dropdown:OnChanged(function(Value)
+        _G.Stats = Value
+    end)
+    
+    PointStats = 3
+      
+    spawn(function()
+		while wait() do
+			if game.Players.localPlayer.Data.Points.Value >= PointStats then
+				if _G.Stats == "Melee" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Melee",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Defense" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Defense",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Sword" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Sword",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Gun" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Gun",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+				if _G.Stats == "Fruit" then
+					local args = {
+						[1] = "AddPoint",
+						[2] = "Demon Fruit",
+						[3] = PointStats
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+			end
+		end
+	end)
+    
+    PosY = 30
+    
+Tabs.Main:AddButton({
+        Title = "Reset Character",
+        Description = "",
+        Callback = function()            
+game.Players.LocalPlayer.Character.Head:Destroy()
+        end
+    })
+    
+    Tabs.Main:AddButton({
+        Title = "Remove Fog",
+        Description = "",
+        Callback = function()
+        game.Lighting.Sky:Destroy()
+        end
+    })
+
+Tabs.Main:AddParagraph({
+        Title = "",
+        Content = "Main Fram"
+    })
+
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Fram Level", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarm = Value
+		StopTween(_G.AutoFarm)		
+    end)
+
+    spawn(function()
+        while wait() do
+            if _G.AutoFarm then
+                spawn(function()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    if not string.find(QuestTitle, NameMon) then
+                        StartMagnet = false
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                    end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        StartMagnet = false
+                        CheckQuest()
+                        if BypassTP then
+                            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
+						        BTP(CFrameQuest)
+                            elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 1500 then
+                                TP1(CFrameQuest)
+                            else
+						        TP1(CFrameQuest)
+					        end
+                        end
+					if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                    end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        CheckQuest()
+                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                    if v.Name == Mon then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            repeat task.wait()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                AutoHaki()                                            
+                                                PosMon = v.HumanoidRootPart.CFrame
+                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                v.HumanoidRootPart.Size = Vector3.new(70,70,70)
+                                                StartMagnet = true
+                                            until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                        else
+                                            StartMagnet = false
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            TP1(CFrameMon)
+                            StartMagnet = false
+                            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
+                             TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(15,10,2))
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
