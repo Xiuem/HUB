@@ -2941,10 +2941,20 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
    
    local Status = Tabs.Main:AddParagraph({
         Title = "Stats Home Ping",
-        Content = ""
+        Content = "Status:"
     })
-   
-  function UpdateClient()
+    
+    if game.PlaceId == 2753915549 then
+    StatusWorld = "1"
+    
+    elseif game.PlaceId == 4442272183 then
+    StatusWorld = "2"
+    
+    elseif game.PlaceId == 7449423635 then
+    StatusWorld = "3"
+    end
+    
+    function UpdateClient()
     local Fps = workspace:GetRealPhysicsFPS()
     local Ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
     local Status1 = "Ping: "..Ping.." | World: "..StatusWorld
@@ -2955,8 +2965,8 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
         while true do wait(.1)
             UpdateClient()
         end
-    end) 
-   
+    end)
+    
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Select Stats",
         Values = {"Melee",
