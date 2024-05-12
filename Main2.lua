@@ -1,4 +1,3 @@
-
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 if
 game.ReplicatedStorage:FindFirstChild("Remotes") 
@@ -16,7 +15,6 @@ local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nchanq
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nchanquadi/Smlptessr/main/buybuby.txt"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nchanquadi/Smlptessr/main/skid%20an%20cac%20do%20em.txt"))()
 ----------------------------------------------------------------------------------------------------------------------------------------------
-
 local Window = Fluent:CreateWindow({
     Title = "Xemo Hub",
     SubTitle = "By HHoang",
@@ -63,6 +61,14 @@ do
         Title = "🍕There may be errors I will try to fix them🍕",
         Content = "How to solve the worry"
     })
+    
+    Fluent:Notify({
+        Title = "Xemo Hub",
+        Content = "@"..game.Players.LocalPlayer.Name.." wait Script load..",
+        SubContent = "", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
+    end
     
 --Place Id Check
 local id = game.PlaceId
@@ -113,12 +119,6 @@ Second_Sea = true
 elseif placeId == 7449423635 then
 Third_Sea = true
 end
-
-Fluent:Notify({
-    Title = "Xemo Hub",
-    Content = "@"..game.Players.LocalPlayer.Name.." wait Script load..",
-    Duration = 5
-})
 
 -- Esp
 function UpdateIslandESP() 
