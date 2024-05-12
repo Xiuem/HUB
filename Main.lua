@@ -4188,23 +4188,6 @@ end)
         end)
 end)
 
-local Spy = Tabs.St:AddParagraph({
-        Title = "Spy",
-        Content = ""
-    })
-    
-    spawn(function()
-    pcall(function()
-        while wait() do
-            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Spy') then
-                Spy:SetDesc('I don't know')
-            else
-                Spy:SetDesc('Need to buy')
-            end
-        end
-    end)
-end)
-    
     local FM = Tabs.St:AddParagraph({
         Title = "Moon",
         Content = ""
