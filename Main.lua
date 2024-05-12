@@ -4187,6 +4187,23 @@ end)
             end
         end)
 end)
+
+local Spy = Tabs.St:AddParagraph({
+        Title = "Spy",
+        Content = ""
+    })
+    
+    spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Spy') then
+                Spy:SetDesc('I don't know')
+            else
+                Spy:SetDesc('Need to buy')
+            end
+        end
+    end)
+end)
     
     local FM = Tabs.St:AddParagraph({
         Title = "Moon",
@@ -4194,23 +4211,23 @@ end)
     })
     
     task.spawn(function()
-    while task.wait() do
-    pcall(function()
-        if game:GetService("Lighting").Sky.MoonTextureId == "http://www.roblox.com/asset/?id=9709149431" then
-           FullMoonStatus = "100%"
-        elseif game:GetService("Lighting").Sky.MoonTextureId == "http://www.roblox.com/asset/?id=9709149052" then
-            FullMoonStatus = "75%"
-        elseif game:GetService("Lighting").Sky.MoonTextureId == "http://www.roblox.com/asset/?id=9709143733" then
-            FullMoonStatus = "50%"
-        elseif game:GetService("Lighting").Sky.MoonTextureId == "http://www.roblox.com/asset/?id=9709150401" then
-            FullMoonStatus = "25%"
-        elseif game:GetService("Lighting").Sky.MoonTextureId == "http://www.roblox.com/asset/?id=9709149680" then
-            FullMoonStatus = "15%"
-        else
-            FullMoonStatus = "0%"
-        end
-    end)
-    end
+            while task.wait() do
+                pcall(function()
+                    if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
+                        FM:SetDesc("Moon: 5/5")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
+                        FM:SetDesc("Moon: 4/5")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
+                        FM:SetDesc("Moon: 3/5")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
+                        FM:SetDesc("Moon: 2/5")
+                    elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
+                        FM:SetDesc("Moon: 1/5")
+                    else
+                        FM:SetDesc("Moon: 0/5")
+                    end
+                end)
+            end
     end)
     
     local Input = Tabs.St:AddInput("Input", {
