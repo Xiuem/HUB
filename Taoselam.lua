@@ -54,7 +54,6 @@ Fluent:Notify({
         SubContent = "", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
-    end
 --------------------------------------------------------------------------------------------------------------------------------------------
     repeat wait() until game.Players
     repeat wait() until game.Players.LocalPlayer
