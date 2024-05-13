@@ -4767,8 +4767,6 @@ ToggleQuanSat:OnChanged(function(Value)
     game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
 end)
 Options.ToggleQuanSat:SetValue(false)
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --Raid
 
