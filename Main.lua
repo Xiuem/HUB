@@ -4239,3 +4239,43 @@ end)
             game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
         end
     })
+    
+    -- Lấy UI và nút từ game
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 100, 0, 50)
+frame.Position = UDim2.new(0.5, -50, 0.5, -25)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(1, 0, 1, 0)
+toggleButton.BackgroundColor3 = Color3.new(1, 1, 1)
+toggleButton.Text = "Off"
+toggleButton.Parent = frame
+
+-- Trạng thái ban đầu của UI
+local uiEnabled = false
+
+-- Hàm để chuyển đổi trạng thái UI
+local function toggleUI()
+    uiEnabled = not uiEnabled
+    if uiEnabled then
+        toggleButton.Text = "On"
+        -- Hiển thị UI
+        -- Điền vào mã để hiển thị UI ở đây
+    else
+        toggleButton.Text = "Off"
+        -- Ẩn UI
+        -- Điền vào mã để ẩn UI ở đây
+    end
+end
+
+-- Khi nhấp vào nút
+toggleButton.MouseButton1Click:Connect(toggleUI)
