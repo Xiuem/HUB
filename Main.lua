@@ -3220,7 +3220,7 @@ Tabs.Main:AddParagraph({
 							topos(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
 						end
 					end
-				end
+				end)
 			end
 		end
 	end)
