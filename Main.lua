@@ -2244,6 +2244,11 @@ Fluent:Notify({
     })
     end
     
+    Tabs.Settings:AddParagraph({
+        Title = "",
+        Content = "Settings Fram"
+    })
+    
         local Dropdown = Tabs.Settings:AddDropdown("Dropdown", {
         Title = "Select Weapon",
         Values = {"Melee","Sword","Fruit","Gun"},
@@ -3173,57 +3178,71 @@ Tabs.Main:AddParagraph({
         end
     end)    
     
-        local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Fram Katakuri[Error]", Default = false })
+        local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Fram Katakuri", Default = false })
 
     Toggle:OnChanged(function(Value)
-        _G.AutoDoughtBoss = Value
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+		_G.AutoDoughtBoss = Value
 		StopTween(_G.AutoDoughtBoss)
-    end)
-
-
+		end)
+		
     spawn(function()
-		while wait() do
-			if _G.AutoDoughtBoss then
-				pcall(function()
-					if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then   
-						if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
-								if v.Name == "Cake Prince" then
-									repeat wait()
-										AutoHaki()
-										EquipWeapon(_G.Select_Weapon)
-										v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-										v.HumanoidRootPart.CanCollide = false
-										topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-									until _G.AutoDoughtBoss == false or not v.Parent or v.Humanoid.Health <= 0
-								end    
-							end    
-						else
-							topos(CFrame.new(-2009.2802734375, 4532.97216796875, -14937.3076171875)) 
-						end
-					else
-						if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
-							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
-								if (v.Name == "Baking Staff" or v.Name == "Head Baker" or v.Name == "Cake Guard" or v.Name == "Cookie Crafter") and v.Humanoid.Health > 0 then
-									repeat wait()
-										AutoHaki()
-										EquipWeapon(_G.Select_Weapon)
-										MonFarm = v.Name                
+        while wait() do 
+            local Doughtframe = CFrame.new(-2009.2802734375, 4532.97216796875, -14937.3076171875)) 
+            if _G.AutoDoughtBoss and World3 then
+            pcall(function()
+                    if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Doughtframe.Position).Magnitude > 2000 then
+                            BTP(Doughtframe)
+                            wait(.1)
+                            for i = 1, 8 do
+                                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(boneframe)
+			                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")	
+                                wait(.1)		
+                            end
+                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Doughtframe.Position).Magnitude < 2000 then
+                            TP1(Doughtframe)
+                        end
+                    else
+                        TP1(Doughtframe)
+                    end
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == "Baking Staff" or v.Name == "Head Baker" or v.Name == "Cake Guard" or v.Name == "Cookie Crafter" then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false 
+                                    MonFarm = v.Name                
                                         PosMon = v.HumanoidRootPart.CFrame
-										v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
-										POSCAKE = v.HumanoidRootPart.CFrame
-										topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
-									until _G.AutoDoughtBoss == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not v.Parent or v.Humanoid.Health <= 0
-								end
-							end
-						else
-							topos(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
-						end
-					end
-				end)
-			end
-		end
-	end)
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoDoughtBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        StartMagnetDoughtMon = false
+    					topos(CFrame.new((-1820.0634765625, 210.74781799316406, -12297.49609375))
+                        for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
+                            if v.Name == "Baking Staff" then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            elseif v.Name == "Head Baker" then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            elseif v.Name == "Cake Guard" then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            elseif v.Name == "Cookie Crafter" then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            end
+                        end
+                    end
+                    end)
+            end
+        end
+    end)    
     
     Tabs.Main:AddParagraph({
         Title = "",
