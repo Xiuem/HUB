@@ -4825,3 +4825,255 @@ end)
 		end
 	end
 end)
+
+Tabs.Ms:AddParagraph({
+        Title = "",
+        Content  = "Auto Fram Material"
+    })
+    
+    if World1 then
+local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Material",
+        Values = {"Magma Ore","Angel Wings","Leather","Scrap Metal","Radioactive Material"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectMaterial = Value
+    end)
+    end
+    if World2 then
+local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Material",
+        Values = {"Mystic Droplet","Magma Ore","Leather","Scrap Metal","Demonic Wisp","Vampire Fang","Radioactive Material"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectMaterial = Value
+    end)
+    end
+    if World3 then
+local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Material",
+        Values = {"Leather","Scrap Metal","Vampire Fang","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk","Radioactive Material"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectMaterial = Value
+    end)
+    end
+    
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Farm Material", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+		AutoFarm_Meterial = Value
+		StopTween(AutoFarm_Meterial)
+		end)
+		Options.MyToggle:SetValue(false)
+		spawn(function()
+        while wait() do 
+            if AutoFarm_Meterial then
+                MaterialMon()
+                spawn(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == MMon then
+                               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                   repeat task.wait()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        Startmg = true
+                                        _G.PosMon = v.HumanoidRootPart.CFrame
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(0,30,1))
+                                                                                        game:GetService'VirtualUser':CaptureController()
+            game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+                                        FastAttack = true
+                                    until not AutoFarm_Meterial or not v.Parent or v.Humanoid.Health <= 0
+                                    FastAttack = false
+                                    Startmg = false
+                                end
+                            end
+                        end
+                    else
+                    if ((MPos).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1500 then
+						topos(MPos)
+					else
+						BTP(MPos)
+						end
+                    end
+                end)
+            end
+        end
+    end)    
+
+spawn(function()
+	while task.wait() do
+		spawn(function()
+			if Startmg then
+				for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+					if (v.HumanoidRootPart.Position-_G.PosMon.Position).Magnitude <= 300 then
+						if v.Humanoid:FindFirstChild("Animator") then
+							v.Humanoid.Animator:Destroy()
+						end
+						v.Humanoid:ChangeState(11)
+						v.Humanoid.JumpPower = 0
+						v.Humanoid.WalkSpeed = 0
+						v.HumanoidRootPart.CanCollide = false
+						v.HumanoidRootPart.Size = Vector3.new(5,5,5)
+						v.HumanoidRootPart.CFrame = _G.PosMon
+						sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
+						sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+		_G.AutoEctoplasm = Value
+		StopTween(_G.AutoEctoplasm)
+		end)
+		
+		spawn(function()
+        while wait() do
+            if _G.AutoEctoplasm and World2 then
+                spawn(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Ship Deckhand [Lv. 1250]") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Engineer [Lv. 1275]") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Steward [Lv. 1300]") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Officer [Lv. 1325]") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == "Ship Officer [Lv. 1325]" or v.Name == "Ship Steward [Lv. 1300]" or "Ship Engineer [Lv. 1275]" or "Ship Deckhand [Lv. 1250]" then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false 
+                                        StartEctoplasmMagnet = true
+                                        EctoplasmMon = v.HumanoidRootPart.CFrame
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                    until not _G.AutoEctoplasm or not v.Parent or v.Humanoid.Health <= 0
+                                    StartEctoplasmMagnet = false
+                                end
+                            end
+                        end
+                    else
+                        StartEctoplasmMagnet = false
+                        local Distance = (Vector3.new(911.35827636719, 125.95812988281, 33159.5390625) - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                        if Distance > 18000 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+                        end
+                        topos(CFrame.new(911.35827636719, 125.95812988281, 33159.5390625))
+                    end
+                end)
+            end
+        end
+    end)
+    
+    Tabs.Ms:AddParagraph({
+        Title = "",
+        Content  = "Sea 2"
+    })
+    
+    if game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer") then
+    
+Tabs.Ms:AddParagraph({
+        Title = "Legendary Sword",
+        Content  = "Sword : "..(game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer"))
+    })
+   
+end
+local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Buy Legendary Sword", Default = false })
+
+    Toggle:OnChanged(function(Value)
+   _G.AutoBuyLegendarySword = Value
+		end)
+		
+		spawn(function()
+        while wait() do
+            if _G.AutoBuyLegendarySword then
+                spawn(function()
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "1"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "2"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "3"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
+                        wait(10)
+                        Hop()
+                    end
+                end)
+            end 
+        end
+    end)
+    
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Rip_indra", Default = false })
+
+    Toggle:OnChanged(function(Value)
+   _G.RipIndraKill = Value
+		StopTween(_G.RipIndraKill)
+		end)
+		
+		spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.RipIndraKill and game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") and game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("rip_indra True Form") or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == ("rip_indra True Form" or v.Name == "rip_indra") and v.Humanoid.Health > 0 and v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                                repeat task.wait()
+                                    pcall(function()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 670),workspace.CurrentCamera.CFrame)
+                                    end)
+                                until not _G.RipIndraKill or v.Humanoid.Health <= 0
+                            end
+                        end
+                    else
+                        topos(CFrame.new(-5344.822265625, 423.98541259766, -2725.0930175781))
+                    end
+                end
+            end
+        end)
+    end) 
+
+    spawn(function()
+        pcall(function()
+            if _G.RipIndraKill then
+                repeat wait()
+                    AutoActiveColorRip_Indra()
+                until not game:GetService("Workspace").Enemies:FindFirstChild("rip_indra True Form") or not game:GetService("Workspace").Enemies:FindFirstChild("rip_indra")
+            end
+        end)
+    end)
