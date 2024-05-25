@@ -2424,7 +2424,7 @@ spawn(function()
     end
 end)
 
-    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Gom Quái", Default = true })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bring Mob", Default = true })
 
     Toggle:OnChanged(function(Mag)
         _G.BringMonster = Mag
@@ -2435,7 +2435,7 @@ end)
         if _G.BringMonster then
         pcall(function()
           for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-          if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+          if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 450 then
           if InMyNetWork(v.HumanoidRootPart) then
             if InMyNetWork(v.HumanoidRootPart) then
           v.HumanoidRootPart.CFrame = PosMon
@@ -2761,7 +2761,7 @@ task.spawn(function()
 	end
     end)
     
-   local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Auto Click", Default = false })
 
     Toggle:OnChanged(function(Value)
       UFFF = Value
@@ -3173,7 +3173,7 @@ Tabs.Main:AddParagraph({
         end
     end)    
     
-        local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm Katakuri", Default = false })
+        local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Farm Katakuri", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.AutoDoughtBoss = Value
@@ -3288,11 +3288,6 @@ Tabs.Main:AddParagraph({
     end
 end)
 
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Summon Boss Katakuri ", Default = false })
-
-    Toggle:OnChanged(function(Value)
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner",Value)
-    end)
     
     Tabs.Main:AddParagraph({
         Title = "",
