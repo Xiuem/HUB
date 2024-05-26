@@ -4274,15 +4274,6 @@ local BoneCheck = Tabs.St:AddParagraph({
                end
         end)
 end)
-
-if game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer") then
-
-Tabs.St:AddParagraph({
-        Title = "Legenday Sword",
-        Content  = "Sword : "..(game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer"))
-    })
-   
-end
     
     local FrozenIsland = Tabs.St:AddParagraph({
         Title = "Frozen Dimension",
@@ -4893,7 +4884,7 @@ end)
 
 Tabs.Ms:AddParagraph({
         Title = "",
-        Content  = "Auto Fram Material"
+        Content  = "Auto Fram Misc"
     })
     
     if World1 then
@@ -5096,3 +5087,60 @@ local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Def
         end)
     end)
     
+    if World1 then
+		tableBoss = {"The Gorilla King","Bobby","Yeti","Mob Leader","Vice Admiral","Warden","Chief Warden","Swan","Magma Admiral","Fishman Lord","Wysper","Thunder God","Cyborg","Saber Expert"}
+	elseif World2 then
+		tableBoss = {"Diamond","Jeremy","Fajita","Don Swan","Smoke Admiral","Cursed Captain","Darkbeard","Order","Awakened Ice Admiral","Tide Keeper"}
+	elseif World3 then
+		tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
+	end
+	
+	local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
+        Title = "Select Boss",
+        Values = tableBoss,
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("")
+
+    Dropdown:OnChanged(function(Value)
+        _G.SelectBoss = Value
+    end)
+    
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Boss", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.AutoFarmBoss = Value
+		StopTween(_G.AutoFarmBoss)
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
