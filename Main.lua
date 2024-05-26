@@ -4030,6 +4030,62 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Soru
     
     Tabs.Sh:AddSection("Misc")
     
+   local Toggle = Tabs.Sh:AddToggle("MyToggle", {Title = "Buy Haki Color", Default = false })
+
+    Toggle:OnChanged(function(Value)
+   _G.AutoBuyEnchancementColour = Value
+		end)
+		
+		spawn(function()
+        while wait() do
+            if _G.AutoBuyEnchancementColour then
+                local args = {
+                    [1] = "ColorsDealer",
+                    [2] = "2"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                if _G.AutoBuyEnchancementColour_Hop and _G.AutoBuyEnchancementColour and not World1 then
+                    wait(10)
+                    Hop()
+                end
+            end 
+        end
+    end) 
+    
+    local Toggle = Tabs.Sh:AddToggle("MyToggle", {Title = "Buy Legendary Sword", Default = false })
+
+    Toggle:OnChanged(function(Value)
+   _G.AutoBuyLegendarySword = Value
+		end)
+		
+		spawn(function()
+        while wait() do
+            if _G.AutoBuyLegendarySword then
+                spawn(function()
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "1"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "2"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "3"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
+                        wait(10)
+                        Hop()
+                    end
+                end)
+            end 
+        end
+    end)
+    
     Tabs.Sh:AddButton({
         Title = "Buy Ghoul Race",
         Description = "",
@@ -4218,6 +4274,15 @@ local BoneCheck = Tabs.St:AddParagraph({
                end
         end)
 end)
+
+if game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer") then
+
+Tabs.St:AddParagraph({
+        Title = "Legenday Sword",
+        Content  = "Sword : "..(game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer"))
+    })
+   
+end
     
     local FrozenIsland = Tabs.St:AddParagraph({
         Title = "Frozen Dimension",
@@ -4874,7 +4939,7 @@ local Dropdown = Tabs.Ms:AddDropdown("Dropdown", {
     end)
     end
     
-    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Farm Material", Default = false })
+    local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Material", Default = false })
 
     Toggle:OnChanged(function(Value)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -4985,54 +5050,7 @@ local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Farm Ectoplasm", Def
             end
         end
     end)
-    
-    Tabs.Ms:AddParagraph({
-        Title = "",
-        Content  = "Sea 2"
-    })
-    
-    if game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer") then
-    
-Tabs.Ms:AddParagraph({
-        Title = "Legendary Sword",
-        Content  = "Sword : "..(game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("LegendarySwordDealer"))
-    })
-   
-end
-local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Buy Legendary Sword", Default = false })
-
-    Toggle:OnChanged(function(Value)
-   _G.AutoBuyLegendarySword = Value
-		end)
-		
-		spawn(function()
-        while wait() do
-            if _G.AutoBuyLegendarySword then
-                spawn(function()
-                    local args = {
-                        [1] = "LegendarySwordDealer",
-                        [2] = "1"
-                    }
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                    local args = {
-                        [1] = "LegendarySwordDealer",
-                        [2] = "2"
-                    }
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                    local args = {
-                        [1] = "LegendarySwordDealer",
-                        [2] = "3"
-                    }
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                    if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
-                        wait(10)
-                        Hop()
-                    end
-                end)
-            end 
-        end
-    end)
-    
+       
     local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Auto Rip_indra", Default = false })
 
     Toggle:OnChanged(function(Value)
@@ -5077,3 +5095,4 @@ local Toggle = Tabs.Ms:AddToggle("MyToggle", {Title = "Buy Legendary Sword", Def
             end
         end)
     end)
+    
