@@ -6032,7 +6032,7 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 		   end)
 		end)
 		
-    Tabs.Lc:AddParagraph({
+    Tabs.Sea:AddParagraph({
         Title = "",
         Content  = "Sea Event"
     })
