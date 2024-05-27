@@ -743,10 +743,10 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 
 local Window = Fluent:CreateWindow({
-    Title = "Night Hub ",
-    SubTitle = "3.0",
+    Title = "Xemo Hub ",
+    SubTitle = "1.0",
     TabWidth = 160,
-    Size = UDim2.fromOffset(480, 375),
+    Size = UDim2.fromOffset(450, 300),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.End -- Used when theres no MinimizeKeybind
@@ -757,19 +757,20 @@ local Options = Fluent.Options
 do
 
 Fluent:Notify({
-    Title = "Night Hub",
-    Content = "[Night Hub] Welcome Again To Script",
-    SubContent = "Hello you, How are You?", -- Optional
+    Title = "Xemo Hub",
+    Content = "[Xemo Hub]Welcome Again To Script",
+    SubContent = "@"..game.Players.LocalPlayer.Name.." wait Script load..", -- Optional
     Duration = 5 -- Set to nil to make the notification not disappear
 })
 
 local Tabs = {
-    I = Window:AddTab({ Title = "Info", Icon = "info" }),
-    G = Window:AddTab({ Title = "General", Icon = "home" }),
-    IQ = Window:AddTab({ Title = "Item and Quest", Icon = "swords" }),
-    LC = Window:AddTab({ Title = "LocalPlayer", Icon = "user" }),
-    ST = Window:AddTab({ Title = "Status and Servers", Icon = "bar-chart-4" }),
-    ST = Window:AddTab({ Title = "Devil Fruit and Raid", Icon = "apple" }),
+    I = Window:AddTab({ Title = "About", Icon = "info" }),
+    G = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
+    IQ = Window:AddTab({ Title = "Item & Quest", Icon = "swords" }),
+    LC = Window:AddTab({ Title = "Local Player", Icon = "user" }),
+    ST = Window:AddTab({ Title = "Status", Icon = "bar-chart-4" }),
+    ST = Window:AddTab({ Title = "Misc", Icon = "apple" }),
     UR = Window:AddTab({ Title = "Upgrate Race", Icon = "person-standing" }),
     SE = Window:AddTab({ Title = "Sea Event", Icon = "waves" }),
     S = Window:AddTab({ Title = "Settings", Icon = "settings" })
