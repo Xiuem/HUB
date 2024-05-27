@@ -6032,13 +6032,12 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 		   end)
 		end)
 		
-		Tabs.Sea:AddParagraph({
+    Tabs.Lc:AddParagraph({
         Title = "",
-        Content  = "Sea Events"
+        Content  = "Sea Event"
     })
     
-		
-		    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Speed Boat", Default = true })
+        local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Speed Boat", Default = true })
 
     Toggle:OnChanged(function(Value)
         _G.Speed = Value
@@ -6057,20 +6056,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
 end)
-		
-		Tabs.Sea:AddButton({
-        Title = "Tele Boat",
-        Description = "",
-        Callback = function()
-                        for _,v in next, workspace.Boats:GetDescendants() do
-                            if v.Name == "VehicleSeat" then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-    end
-    end
-        end
-    })
-		
-		Tabs.Sea:AddButton({
+
+Tabs.Sea:AddButton({
         Title = "Buy Boat[PirateBrigade]",
         Description = "",
         Callback = function()
@@ -6078,7 +6065,7 @@ end)
         end
     })
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Auto Sali", Default = false })
+local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Auto Sali", Default = false })
 
     Toggle:OnChanged(function(state)
         _G.dao = state
@@ -6381,95 +6368,7 @@ Tabs.Sea:AddParagraph({
         Title = "",
         Content  = "Kitsune Island"
     })
-    
-    local ToggleEspKitsune = Tabs.Sea:AddToggle("ToggleEspKitsune", {Title = "Định vị Đảo kisune",Description = "", Default = false })
-      ToggleEspKitsune:OnChanged(function(Value)
-        KitsuneIslandEsp = Value
-        while KitsuneIslandEsp do wait()
-            UpdateIslandKisuneESP() 
-        end
-    end)
-      Options.ToggleEspKitsune:SetValue(false)
-
-      function UpdateIslandKisuneESP() 
-        for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
-            pcall(function()
-                if KitsuneIslandEsp then 
-                    if v.Name == "Kitsune Island" then
-                        if not v:FindFirstChild('NameEsp') then
-                            local bill = Instance.new('BillboardGui',v)
-                            bill.Name = 'NameEsp'
-                            bill.ExtentsOffset = Vector3.new(0, 1, 0)
-                            bill.Size = UDim2.new(1,200,1,30)
-                            bill.Adornee = v
-                            bill.AlwaysOnTop = true
-                            local name = Instance.new('TextLabel',bill)
-                            name.Font = "Code"
-                            name.FontSize = "Size14"
-                            name.TextWrapped = true
-                            name.Size = UDim2.new(1,0,1,0)
-                            name.TextYAlignment = 'Top'
-                            name.BackgroundTransparency = 1
-                            name.TextStrokeTransparency = 0.5
-                            name.TextColor3 = Color3.fromRGB(80, 245, 245)
-                        else
-                            v['NameEsp'].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' M')
-                        end
-                    end
-                else
-                    if v:FindFirstChild('NameEsp') then
-                        v:FindFirstChild('NameEsp'):Destroy()
-                    end
-                end
-            end)
-        end
-    end
-
-      local ToggleTPKitsune = Tabs.Sea:AddToggle("ToggleTPKitsune", {Title = "Di Chuyển Đến Đảo Kisune",Description = "", Default = false })
-      ToggleTPKitsune:OnChanged(function(Value)
-        _G.TweenToKitsune = Value
-      end)
-      Options.ToggleTPKitsune:SetValue(false)
-      spawn(function()
-        local kitsuneIsland
-        while not kitsuneIsland do
-            kitsuneIsland = game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland")
-            wait(1)
-        end
-        while wait() do
-            if _G.TweenToKitsune then
-                local shrineActive = kitsuneIsland:FindFirstChild("ShrineActive")
-                if shrineActive then
-                    for _, v in pairs(shrineActive:GetDescendants()) do
-                        if v:IsA("BasePart") and v.Name:find("NeonShrinePart") then
-                            Tween(v.CFrame)
-                        end
-                    end
-                end
-            end
-        end
-    end)
-
-
-      local ToggleCollectAzure = Tabs.Sea:AddToggle("ToggleCollectAzure", {Title = "Nhặt Hồn Lửa",Description = "", Default = false })
-      ToggleCollectAzure:OnChanged(function(Value)
-         _G.CollectAzure = Value
-      end)
-      Options.ToggleCollectAzure:SetValue(false)
-spawn(function()
-    while wait() do
-        if _G.CollectAzure then
-            pcall(function()
-                if game:GetService("Workspace"):FindFirstChild("AttachedAzureEmber") then
-                    Tween(game:GetService("Workspace"):WaitForChild("EmberTemplate"):FindFirstChild("Part").CFrame)
-					print("Azure")
-                end
-            end)
-        end
-    end
-end)
-end
-    
+   
     local ScreenGui1 = Instance.new("ScreenGui")
 local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
