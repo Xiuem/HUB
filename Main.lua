@@ -6032,12 +6032,12 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 		   end)
 		end)
 		
-    Tabs.Sea:AddParagraph({
+    Tabs.Se:AddParagraph({
         Title = "",
         Content  = "Sea Event"
     })
     
-        local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Speed Boat", Default = true })
+        local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Speed Boat", Default = true })
 
     Toggle:OnChanged(function(Value)
         _G.Speed = Value
@@ -6057,7 +6057,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)
 end)
 
-Tabs.Sea:AddButton({
+Tabs.Se:AddButton({
         Title = "Buy Boat[PirateBrigade]",
         Description = "",
         Callback = function()
@@ -6065,13 +6065,13 @@ Tabs.Sea:AddButton({
         end
     })
     
-local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Auto Sali", Default = false })
+local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Auto Sali", Default = false })
 
     Toggle:OnChanged(function(state)
         _G.dao = state
     end)
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Sea Beast", Default = false })
+    local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Kill Sea Beast", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SeaBeasts1 = Value
@@ -6149,7 +6149,7 @@ spawn(function()
         end
     end)
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Skip Sea Beast [Turn On Sea Kill Beast] ", Default = false })
+    local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Skip Sea Beast [Turn On Sea Kill Beast] ", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.SkipSeaBeast = Value
@@ -6168,7 +6168,7 @@ spawn(function()
         end
     end)
         
-local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Shark", Default = false })
+local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Kill Shark", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.KillShark = Value
@@ -6212,7 +6212,7 @@ local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Shark", Default = f
         end
     end)    
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Piranha", Default = false })
+    local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Kill Piranha", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.KillPiranha = Value
@@ -6256,7 +6256,7 @@ local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Shark", Default = f
         end
     end)    
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Fish Crew Member", Default = false })
+    local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Kill Fish Crew Member", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.KillFishCrew = Value
@@ -6298,7 +6298,7 @@ local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Shark", Default = f
         end
     end)    
     
-    local Toggle = Tabs.Sea:AddToggle("MyToggle", {Title = "Kill Terror Shark", Default = false })
+    local Toggle = Tabs.Se:AddToggle("MyToggle", {Title = "Kill Terror Shark", Default = false })
 
     Toggle:OnChanged(function(Value)
         _G.KillTerrorShark = Value
@@ -6364,7 +6364,7 @@ end)
 	end
 end)
 
-Tabs.Sea:AddParagraph({
+Tabs.Se:AddParagraph({
         Title = "",
         Content  = "Kitsune Island"
     })
