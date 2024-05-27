@@ -1559,7 +1559,7 @@ end)
 Options.BypassTeleport:SetValue(true)
 end
 
-local Toggle = Tabs.S:AddToggle("MyToggle", {Title = "Remove Effect ", Default = true })
+local RemoveEffect = Tabs.S:AddToggle("RemoveEffect", {Title = "Remove Effect ", Default = true })
 
     Toggle:OnChanged(function(Value)
         _G.Remove_Effect = Value		
