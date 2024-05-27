@@ -929,9 +929,25 @@ spawn(function()
     end
 end)
 
+Tabs.G:AddButton({
+        Title = "Reset Character",
+        Description = "",
+        Callback = function()            
+game.Players.LocalPlayer.Character.Head:Destroy()
+        end
+    })
+    
+    Tabs.G:AddButton({
+        Title = "Remove Fog",
+        Description = "",
+        Callback = function()
+        game.Lighting.Sky:Destroy()
+        end
+    })
+
 local FarmmingSettings = Tabs.G:AddSection("Farmming Toggle")
 
-local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default = false })
+local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm Level", Default = false })
 
     FarmToggle:OnChanged(function(Value)
         _G.LevelFarm = Value
@@ -987,7 +1003,7 @@ local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default 
         end
     end)
 
-local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Katakuri", Default = false })
+local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Fram Katakuri", Default = false })
 
 AutoKatakuriToggle:OnChanged(function(Value)
         _G.AutoKatakuri = Value
@@ -1108,7 +1124,7 @@ spawn(function()
     end
 end)
 
-local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Bone", Default = false })
+local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Fram Bone", Default = false })
 
 AutoBoneToggle:OnChanged(function(Value)
         _G.AutoBone = Value
