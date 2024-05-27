@@ -4107,6 +4107,76 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Third Sea", Defaul
 			game:GetService("RunService").Heartbeat:Wait()
 		end)
 	end)
+	
+	local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Farm Chest [TP]", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        AutoFarmChest = Value
+		StopTween(AutoFarmChest)
+    end)
+    _G.MagnitudeAdd = 0
+spawn(function()
+	while wait() do 
+		if AutoFarmChest then
+			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
+				if v.Name:find("Chest") then
+					if game:GetService("Workspace"):FindFirstChild(v.Name) then
+						if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
+							repeat wait()
+								if game:GetService("Workspace"):FindFirstChild(v.Name) then
+									topos(v.CFrame)
+								end
+							until AutoFarmChest == false or not v.Parent
+							topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+							_G.MagnitudeAdd = _G.MagnitudeAdd+1500
+							break
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Farm Chest [BP][ 75% Kick]", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        _G.ChestBypass = Value
+    end)
+    spawn(function()
+while wait() do
+if _G.ChestBypass then
+spawn(function()
+for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+      if string.find(v.Name, "Chest") then
+          print(v.Name)
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+          wait(.15)
+      end
+  end
+  game.Players.LocalPlayer.Character.Head:Destroy()
+  for _,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+   if string.find(v.Name, "Chest") and v:IsA("TouchTransmitter") then
+   firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+   wait()
+   firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+   end
+   end
+  end)
+    end
+  end
+end)
+
+spawn(function()
+while task.wait() do
+if _G.ChestBypass then
+        local ohString1 = "SetTeam"
+        local ohString2 = "Pirates"
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(ohString1, ohString2)
+     end
+end
+end)
+
     
     local x2Code = {
         "KITTGAMING",
@@ -5087,7 +5157,7 @@ end)
 
 Tabs.Ms:AddParagraph({
         Title = "",
-        Content  = "Auto Fram Misc"
+        Content  = "Auto Fram Misc 2"
     })
     
     if World1 then
