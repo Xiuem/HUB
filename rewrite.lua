@@ -1,4 +1,4 @@
--- Xemo No Skid
+-- No Skid
 if game.PlaceId == 2753915549 then
     taodangosea1 = true
 elseif game.PlaceId == 4442272183 then
@@ -723,8 +723,8 @@ ImageButton.Parent = ScreenGui
 ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.100739375, 0, 0.121457487, 0)
-ImageButton.Size = UDim2.new(0, 60, 0, 60)
+ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Image = "rbxassetid://14299284116"
 ImageButton.MouseButton1Click:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
@@ -766,9 +766,9 @@ Fluent:Notify({
 local Tabs = {
     I = Window:AddTab({ Title = "About", Icon = "info" }),
     G = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     IQ = Window:AddTab({ Title = "Item & Quest", Icon = "swords" }),
     LC = Window:AddTab({ Title = "Local Player", Icon = "user" }),
-    Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     ST = Window:AddTab({ Title = "Status", Icon = "bar-chart-4" }),
     ST = Window:AddTab({ Title = "Misc", Icon = "apple" }),
     UR = Window:AddTab({ Title = "Upgrate Race", Icon = "person-standing" }),
@@ -778,11 +778,11 @@ local Tabs = {
 
 -- Info Tab :
 
-local Info = Tabs.I:AddSection("Info Owner")
+local Info = Tabs.I:AddSection("Information")
 
 Tabs.I:AddParagraph({
     Title = "Owner Script",
-    Content = "Owner Script :12_"
+    Content = "Owner 12_"
 })
 
 Tabs.I:AddParagraph({
@@ -931,7 +931,7 @@ end)
 
 local FarmmingSettings = Tabs.G:AddSection("Farmming Toggle")
 
-local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm Level", Default = false })
+local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default = false })
 
     FarmToggle:OnChanged(function(Value)
         _G.LevelFarm = Value
@@ -987,7 +987,7 @@ local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm Level", De
         end
     end)
 
-local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Fram Katakuri", Default = false })
+local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Katakuri", Default = false })
 
 AutoKatakuriToggle:OnChanged(function(Value)
         _G.AutoKatakuri = Value
@@ -1108,7 +1108,7 @@ spawn(function()
     end
 end)
 
-local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Fram Bone", Default = false })
+local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Bone", Default = false })
 
 AutoBoneToggle:OnChanged(function(Value)
         _G.AutoBone = Value
@@ -1266,7 +1266,7 @@ spawn(function()
     end
 end)
 
-local AutoPirates = Tabs.G:AddToggle("AutoPirates", {Title = "Auto Pirates Raid", Default = false })
+local AutoPirates = Tabs.G:AddToggle("AutoPirates", {Title = "Auto Pirates", Default = false })
 
 AutoPirates:OnChanged(function(Value)
     _G.AutoPirates = Value
@@ -1379,7 +1379,7 @@ local FastDelay = Tabs.S:AddDropdown("FastDelay", {
     Default = 1,
 })
 
-FastDelay:SetValue("0.175")
+FastDelay:SetValue("0.15")
 
 FastDelay:OnChanged(function(Value)
     _G.FastAttackDelay = Value
@@ -1558,3 +1558,54 @@ end)
 
 Options.BypassTeleport:SetValue(true)
 end
+
+local Toggle = Tabs.S:AddToggle("MyToggle", {Title = "Remove Effect ", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        _G.Remove_Effect = Value		
+    end)
+    
+    spawn(function()
+    game:GetService('RunService').Stepped:Connect(function()
+        if _G.Remove_Effect then
+            for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+                if v.Name == "Death" then
+                    v:Destroy() 
+                end
+            end
+        end
+    end)
+    end)
+
+local Toggle = Tabs.S:AddToggle("MyToggle", {Title = "Remove Notify", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        RemoveNotify = Value
+    end)
+    
+    spawn(function()
+        while wait() do
+            if RemoveNotify then
+                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
+            else
+                game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
+            end
+        end
+    end)
+    
+    local Toggle = Tabs.S:AddToggle("MyToggle", {Title = "Remove Text", Default = true })
+
+    Toggle:OnChanged(function(Value)
+        Removetext = Value
+    end)
+    
+    spawn(function()
+        while wait() do
+            if Removetext then
+                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+            else
+                game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+            end
+        end
+        end)
+     
