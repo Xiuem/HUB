@@ -777,7 +777,10 @@ local Tabs = {
 
 -- General Tab :
 
-local WP = Tabs.G:AddSection("Select Weapons")
+Tabs.G:AddParagraph({
+        Title = "",
+        Content  = "Select Weapons"
+    })
 
 local SelectWP = Tabs.G:AddDropdown("Select Weapons", {
     Title = "Select Weapons",
@@ -812,7 +815,10 @@ task.spawn(function()
     end
 end)
 
-local FarmmingSettings = Tabs.G:AddSection("Farmming Settings")
+Tabs.G:AddParagraph({
+        Title = "",
+        Content  = "Farmming Settings"
+    })
 
 local Stats = Tabs.G:AddDropdown("Stats", {
     Title = "Select Stats",
@@ -894,7 +900,10 @@ spawn(function()
     end
 end)
 
-local FarmmingSettings = Tabs.G:AddSection("Farmming Toggle")
+Tabs.G:AddParagraph({
+        Title = "",
+        Content  = "Farmming Toggle"
+    })
 
 local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default = false })
 
@@ -1137,7 +1146,11 @@ spawn(function()
     end
 end)
 
-local OthersToggle = Tabs.G:AddSection("Others Toggle")
+Tabs.G:AddParagraph({
+        Title = "",
+        Content  = "Others Toggle"
+    })
+    
 
 local AutoFactory = Tabs.G:AddToggle("AutoFactory", {Title = "Auto Factory", Default = false })
 
@@ -1292,6 +1305,12 @@ spawn(function()
 end)
                                         
 -- Settings Tab :
+
+Tabs.S:AddParagraph({
+        Title = "",
+        Content  = "Setting Fram"
+    })
+    
 
 local SettingsToggle = Tabs.S:AddSection("Settings")
 
