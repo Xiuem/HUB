@@ -758,13 +758,12 @@ do
 
 Fluent:Notify({
     Title = "Xemo Hub",
-    Content = "[Xemo Hub]Welcome Again To Script",
+    Content = "[Xemo Hub] Welcome Again To Script",
     SubContent = "@"..game.Players.LocalPlayer.Name.." wait Script load..", -- Optional
     Duration = 5 -- Set to nil to make the notification not disappear
 })
 
 local Tabs = {
-    I = Window:AddTab({ Title = "About", Icon = "info" }),
     G = Window:AddTab({ Title = "Main", Icon = "home" }),
     Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     IQ = Window:AddTab({ Title = "Item & Quest", Icon = "swords" }),
@@ -775,40 +774,6 @@ local Tabs = {
     SE = Window:AddTab({ Title = "Sea Event", Icon = "waves" }),
     S = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
-
--- Info Tab :
-
-local Info = Tabs.I:AddSection("Information")
-
-Tabs.I:AddParagraph({
-    Title = "Owner Script",
-    Content = "Owner 12_"
-})
-
-Tabs.I:AddParagraph({
-    Title = "Anti Banana Hub",
-    Content = "Apple W-azure Hub On Top"
-})
-
-Tabs.I:AddParagraph({
-    Title = "YouTube",
-    Content = "Xemohub!"
-})
-
-local DC = Tabs.I:AddSection("Upgrated and Discord")
-
-Tabs.I:AddParagraph({
-    Title = "Update Auto Farm, Bring Mob, FastAttack, ...",
-    Content = "update."
-})
-
-Tabs.I:AddButton({
-    Title = "Join My Discord",
-    Description = "Click the button to join Discord",
-    Callback = function()
-        setclipboard("https://discord.gg/R4xC3t2Xm8")
-    end
-})
 
 -- General Tab :
 
