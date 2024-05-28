@@ -765,7 +765,7 @@ Fluent:Notify({
 
 local Tabs = {
     G = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Sh = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
+    O = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
     IQ = Window:AddTab({ Title = "Item & Quest", Icon = "swords" }),
     LC = Window:AddTab({ Title = "Local Player", Icon = "user" }),
     ST = Window:AddTab({ Title = "Status", Icon = "bar-chart-4" }),
@@ -905,7 +905,7 @@ Tabs.G:AddParagraph({
         Content  = "Farmming Toggle"
     })
 
-local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default = false })
+local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm Level", Default = false })
 
     FarmToggle:OnChanged(function(Value)
         _G.LevelFarm = Value
@@ -961,7 +961,7 @@ local FarmToggle = Tabs.G:AddToggle("FarmToggle", {Title = "Auto Farm", Default 
         end
     end)
 
-local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Katakuri", Default = false })
+local AutoKatakuriToggle = Tabs.G:AddToggle("AutoKatakuriToggle", {Title = "Auto Fram Katakuri", Default = false })
 
 AutoKatakuriToggle:OnChanged(function(Value)
         _G.AutoKatakuri = Value
@@ -1082,7 +1082,7 @@ spawn(function()
     end
 end)
 
-local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Bone", Default = false })
+local AutoBoneToggle = Tabs.G:AddToggle("AutoBoneToggle", {Title = "Auto Fram Bone", Default = false })
 
 AutoBoneToggle:OnChanged(function(Value)
         _G.AutoBone = Value
@@ -1252,7 +1252,28 @@ end)
 
 Options.AutoPirates:SetValue(false)
 
+-- Shop
+
+Tabs.O:AddParagraph({
+        Title = "",
+        Content  = "Fighting Style"
+    })
+
+Tabs.O:AddButton({
+        Title = "Buy Sanguine Art",
+        Description = "",
+        Callback = function()            
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
+        end
+    })
+    
+
 -- Item and Quest :
+
+Tabs.IQ:AddParagraph({
+        Title = "",
+        Content  = "Auto Item"
+    })
 
 local AutoSecondSea = Tabs.IQ:AddToggle("AutoSecondSea", {Title = "Auto Sea 2", Default = false })
 
