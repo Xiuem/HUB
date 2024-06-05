@@ -2841,14 +2841,12 @@ local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Remove Notify", Def
         end
         end)
         
-        local BypassTeleport = Tabs.Settings:AddToggle("BypassTeleport", {Title = "Bypass Teleport", Default = true })
+        local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Bypass Teleport", Default = false })
 
-BypassTeleport:OnChanged(function(Value)
-    BypassTP = Value
-end)
-
-Options.BypassTeleport:SetValue(true)
-     
+    Toggle:OnChanged(function(Value)
+        BypassTP = Value		
+    end)
+ 
      local Slider = Tabs.Settings:AddSlider("Slider", {
         Title = "Kill Mob %[Mastery]",
         Description = "",
